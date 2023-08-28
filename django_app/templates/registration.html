@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"   href="{% static 'css/style.css' %}">
+
+    </head>
+    <body>
+     <div class='form-container'>   
+        <form method="post" action="{% url "registration" %}">
+        
+    <h1>
+        Please Register Below
+    </h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class='buttons'>
+    <button type="submit">Register</button>
+    <button type="reset" >Clear</button>
+    <button type="button" onClick="home()"> Home Page</button>
+    </div>
+</form>
+</div>
+
+</body>
+
+    <script>
+        
+        function home(){
+            window.location.href= "{% url 'home' %}";
+        }
+        </script>
+    
+</html>
