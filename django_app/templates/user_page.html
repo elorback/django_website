@@ -1,48 +1,95 @@
 {% load static %}
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet"  href="{% static 'css/style.css' %}">
-    </head>
-    <body>
-        <div class="form-container">
-            {% if user.is_authenticated %}
-            <h1>
-                Welcome {{ user.username }}!
-            </h1>
-        
-            <form method="post" action="{% url 'add_item' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="buttons">
-                    <button type="submit" id="add-item-button"> Add New Item</button>
-                    {% if request.path == '/add_item/' %}
-                        <button type="reset" id="clear-button"> Clear</button>
-                    {% endif %}
-                </div>
-            </form>
-            <div class="buttons" style='margin-top: 7px'>
-                <button onClick="home()">Home Page</button>
-                <button onClick="logout()">Logout</button>
-            </div>
-        
-        
-            {% else %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="form-container">
+    {% if user.is_authenticated %}
+    <h1>
+        Welcome {{ user.username }}!
+    </h1>
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+    <form method="post" action="{% url 'add_item' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="buttons" style="margin-top: 7px">
+            <button type="submit">Add New Item</button>
+            {% if request.resolver_match.url_name == 'add_item' %}
+            <button type="reset">Clear</button>
+            {% endif %}
         </div>
-        {% endif %}
-        </div>
-        </body>
-<script>
-function home(){
-    window.location.href ="{% url  'home' %}";
-}
+    </form>
 
-function logout(){
-    window.location.href="{% url  'user_logout' %}"
-}
+    <div class="buttons" style="margin-top: 7px">
+        <button onClick="home()">Home Page</button>
+        <button onClick="logout()">Logout</button>
+        <button onClick="user_settings()">User Setings</button>
+
+    </div>
+    
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+    <form method="GET" action="{% url 'multiple_posts' %}">
+        <div class='search-container' style="margin-top:7px">
+        <button type="submit" name='search_all' class='search-button'>Show Users With More That One Item</button>
+        </div>
+        {% if request.resolver_match.url_name == 'multiple_posts' %}
+        <h2>Users:  </h2>
+        {% if users_with_multiple_items %}
+        <ul>
+            {% for user in users_with_multiple_items %}
+            <li>User: {{user.username}}</li>
+        </br>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No items found for "{{ query }}"</p>
+        {% endif %}
+
+        {% endif %}
+    </form>
+  {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+  
+  <form method="GET" action="{% url 'user_items' %}">
+    <div class='search-container'>
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit" class='search-button'>Search</button>
+    </div>
+    {% if request.resolver_match.url_name == 'user_items' %}
+    <h2>Items posted by "{{ query }}"</h2>
+    {% if user_items %}
+    <ul>
+        {% for item in user_items %}
+        <li>Item: {{ item.title }} </br> {{item.date_posted}} </br>Description: {{ item.description }} </br> Price: ${{ item.price }}</li>
+    </br>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No items found for "{{ query }}"</p>
+    {% endif %}
+
+    {% endif %}
+</form>
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+
+    {% endif %} {% comment %} end of the user.is_authenticated {% endcomment %}   
+    
+</div>
+<script>
+    function user_settings(){
+        window.location.href = "{% url 'user_settings' %}"
+    }
+    function home() {
+        window.location.href = "{% url 'home' %}";
+    }
+
+    function logout() {
+        window.location.href = "{% url 'user_logout' %}"
+    }
 </script>
-    </html>
+</body>
+</html>

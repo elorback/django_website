@@ -21,6 +21,8 @@ SECRET_KEY = 'django-insecure-%0hx1l=w0tt#p84z+)ap6r&qjf3qnr_agf9mvi%rm-gxynjn^^
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_AGE = 1800 
+TIME_ZONE = 'America/Los_Angeles'
+
 # LOGOUT_REDIRECT_URL = 'home'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

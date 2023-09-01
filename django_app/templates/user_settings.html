@@ -1,0 +1,53 @@
+    {% load static %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>User Settings</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+    {% if user.is_authenticated %}
+    <div class="form-container">
+        <h1>User Settings</h1>
+        <h2>User: {{ user.username }}</h2>
+
+        <div class="buttons">
+            {% if request.resolver_match.url_name == "delete_profile" %}
+            <form method="post" action="{% url "delete_profile" %}">
+                {% csrf_token %}
+                <p>Are you sure you want to delete?</p>
+                <button name='action' value ='confirm' type="submit">Delete</button>
+                <button name='action'>Cancel</button>
+            </form>
+            {% else %}
+            <button onClick="user_page()">User Page</button>
+            <button onClick="home()">Home</button>
+            <button onClick="logout()">Log Out</button>
+            <button onClick="delete_profile()">Delete Profile</button>
+                {% endif %}
+            
+        </div>
+    </div>
+    {% endif %}
+    </body>
+    <script>
+        function delete_profile(){
+            window.location.href = "{% url 'delete_profile'%}";
+        }
+        function home() {
+            window.location.href = "{% url 'home' %}";
+        }
+
+        function user_page() {
+            window.location.href = "{% url 'user_page' %}";
+        }
+
+        function logout() {
+            window.location.href = "{% url 'user_logout' %}";
+        }
+    </script>
+    </html>

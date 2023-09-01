@@ -19,11 +19,13 @@ class Items(models.Model):
     item_id = models.AutoField(primary_key=True,unique=True)
     title = models.CharField(max_length=50)
     description= models.CharField(max_length=150)
-    date_posted = models.DateTimeField(default=timezone.now)
+    date_posted = models.DateTimeField(default=timezone.localtime)
     user_profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     username = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10,decimal_places=2)
     def __str__(self):
         return self.title
+    def get_local_date_posted(self, user_timezone):
+        return self.date_posted.astimezone(user_timezone)
     class Meta:
         db_table = 'items'
