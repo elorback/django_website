@@ -18,10 +18,10 @@
     <h1>
         Welcome {{user.username}}! 
     </h1>
-
     <div class='buttons'>
         <button onClick="user_page()">User Page</button>
         <button onClick="logout()">Log Out</button>
+        <button onClick="user_settings()">User Settings</button>
     </div>
 {% else %}
 <h1>
@@ -32,15 +32,17 @@
 <button onClick = "registration()">Sign Up</button>
 {% endif %}
 </div>
-</div>
 <div>
 
 
     
 <script>
-function user_page(){
-    window.location.href = "{% url  'user_page' %}";
-}
+    function user_page(){
+        window.location.href = "{% url  'user_page' %}";
+    }
+    function user_settings(){
+        window.location.href = "{% url  'user_settings' %}";
+    }
 function logout(){
     window.location.href = "{% url 'user_logout' %}";
 }
