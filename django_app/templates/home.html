@@ -19,10 +19,12 @@
         Welcome {{user.username}}! 
     </h1>
     <div class='buttons'>
+        <div class='gen-container'>
         <button onClick="user_page()">User Page</button>
         <button onClick="user_settings()">User Settings</button>
-        <button onClick="logout()">Log Out</button>
     </div>
+    <button onClick="logout()">Log Out</button>
+</div>
 {% else %}
 <h1>
     Welcome to the Home Page

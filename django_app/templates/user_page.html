@@ -13,25 +13,30 @@
     <h1>
         Welcome {{ user.username }}!
     </h1>
-{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+
+    <div class="buttons" style="margin-top: 7px">
+        <div class='gen-container'>
+
+        <button onClick="home()">Home Page</button>
+        <button onClick="user_settings()">User Setings</button>
+    </div>
+
+        <button onClick="logout()">Logout</button>
+    </div>
+</br>
+    {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
     <form method="post" action="{% url 'add_item' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="buttons" style="margin-top: 7px">
-            <button type="submit">Add New Item</button>
-            {% if request.resolver_match.url_name == 'add_item' %}
-            <button type="reset">Clear</button>
-            {% endif %}
+            <div class='gen-container'>
+                <button type="submit">Add New Item</button>
+                    {% if request.resolver_match.url_name == 'add_item' %}
+                <button type="reset">Clear</button>
+                    {% endif %}
+            </div>
         </div>
     </form>
-
-    <div class="buttons" style="margin-top: 7px">
-        <button onClick="home()">Home Page</button>
-        <button onClick="logout()">Logout</button>
-        <button onClick="user_settings()">User Setings</button>
-
-    </div>
-    
 {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
     <form method="GET" action="{% url 'multiple_posts' %}">
         <div class='search-container' style="margin-top:7px">

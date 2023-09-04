@@ -24,12 +24,16 @@
                 <button name='action'>Cancel</button>
             </form>
             {% else %}
-            <button onClick="user_page()">User Page</button>
-            <button onClick="home()">Home</button>
-            <button onClick="logout()">Log Out</button>
-            <button onClick="delete_profile()">Delete Profile</button>
-                {% endif %}
-            
+            <div >
+                    <button onClick="user_page()">User Page</button>
+                    <button onClick="home()">Home</button>
+                </div>  
+                <div >
+                                <button onClick="logout()">Log Out</button>
+                                <button onClick="delete_profile()">Delete Profile</button>
+                </div >
+         
+            {% endif %}
         </div>
     </div>
     {% endif %}
@@ -49,5 +53,6 @@
         function logout() {
             window.location.href = "{% url 'user_logout' %}";
         }
+
     </script>
     </html>
