@@ -12,10 +12,11 @@
     <body>
     {% if user.is_authenticated %}
     <div class="form-container">
+        <div>
         <h1>User Settings</h1>
         <h2>User: {{ user.username }}</h2>
-
-        <div class="buttons">
+        
+        <div class="buttons" style='margin-right:7px'>
             {% if request.resolver_match.url_name == "delete_profile" %}
             <form method="post" action="{% url "delete_profile" %}">
                 {% csrf_token %}
@@ -24,18 +25,17 @@
                 <button name='action'>Cancel</button>
             </form>
             {% else %}
-            <div >
+                <div class'buttons'>
                     <button onClick="user_page()">User Page</button>
                     <button onClick="home()">Home</button>
-                </div>  
-                <div >
-                                <button onClick="logout()">Log Out</button>
-                                <button onClick="delete_profile()">Delete Profile</button>
-                </div >
-         
+                    <button onClick="logout()">Log Out</button>
+                    <button onClick="delete_profile()">Delete Profile</button>
+                </div>
             {% endif %}
+            
         </div>
     </div>
+</div>
     {% endif %}
     </body>
     <script>

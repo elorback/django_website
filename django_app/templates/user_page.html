@@ -10,59 +10,55 @@
 <body>
 <div class="form-container">
     {% if user.is_authenticated %}
+    <div>
     <h1>
         Welcome {{ user.username }}!
     </h1>
-
     <div class="buttons" style="margin-top: 7px">
-        <div class='gen-container'>
-
         <button onClick="home()">Home Page</button>
         <button onClick="user_settings()">User Setings</button>
-    </div>
-
         <button onClick="logout()">Logout</button>
     </div>
 </br>
-    {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
-    <form method="post" action="{% url 'add_item' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="buttons" style="margin-top: 7px">
-            <div class='gen-container'>
-                <button type="submit">Add New Item</button>
-                    {% if request.resolver_match.url_name == 'add_item' %}
-                <button type="reset">Clear</button>
-                    {% endif %}
-            </div>
-        </div>
-    </form>
 {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
-    <form method="GET" action="{% url 'multiple_posts' %}">
-        <div class='search-container' style="margin-top:7px">
-        <button type="submit" name='search_all' class='search-button'>Show Users With More That One Item</button>
+<form method="post" action="{% url 'add_item' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="buttons" style="margin-top: 7px">
+        <div>
+            <button type="submit">Add New Item</button>
+            {% if request.resolver_match.url_name == 'add_item' %}
+            <button type="reset">Clear</button>
+            {% endif %}
         </div>
-        {% if request.resolver_match.url_name == 'multiple_posts' %}
-        <h2>Users:  </h2>
-        {% if users_with_multiple_items %}
-        <ul>
-            {% for user in users_with_multiple_items %}
-            <li>User: {{user.username}}</li>
-        </br>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No items found for "{{ query }}"</p>
-        {% endif %}
+    </div>
+</form>
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+<form method="GET" action="{% url 'multiple_posts' %}">
+    <div class='search-container' style="margin-top:7px">
+        <button type="submit" name='search_all' class='search-button'>Show Users With More That One Item</button>
+    </div>
+    {% if request.resolver_match.url_name == 'multiple_posts' %}
+    <h2>Users:  </h2>
+    {% if users_with_multiple_items %}
+    <ul>
+        {% for user in users_with_multiple_items %}
+        <li>User: {{user.username}}</li>
+    </br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No items found for "{{ query }}"</p>
+{% endif %}
 
-        {% endif %}
-    </form>
-  {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
-  
-  <form method="GET" action="{% url 'user_items' %}">
+{% endif %}
+</form>
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+
+<form method="GET" action="{% url 'user_items' %}">
     <div class='search-container'>
-    <input type="text" name="query" placeholder="Search...">
-    <button type="submit" class='search-button'>Search</button>
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit" class='search-button'>Search</button>
     </div>
     {% if request.resolver_match.url_name == 'user_items' %}
     <h2>Items posted by "{{ query }}"</h2>
@@ -71,18 +67,18 @@
         {% for item in user_items %}
         <li>Item: {{ item.title }} </br> {{item.date_posted}} </br>Description: {{ item.description }} </br> Price: ${{ item.price }}</li>
     </br>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No items found for "{{ query }}"</p>
-    {% endif %}
+    {% endfor %}
+</ul>
+{% else %}
+<p>No items found for "{{ query }}"</p>
+{% endif %}
 
-    {% endif %}
+{% endif %}
 </form>
-{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+{% endif %}
 
-    {% endif %} {% comment %} end of the user.is_authenticated {% endcomment %}   
-    
+
+</div>
 </div>
 <script>
     function user_settings(){
@@ -91,7 +87,7 @@
     function home() {
         window.location.href = "{% url 'home' %}";
     }
-
+    
     function logout() {
         window.location.href = "{% url 'user_logout' %}"
     }

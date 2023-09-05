@@ -16,6 +16,8 @@
     <body>
         
 <div class='form-container'>
+    <div>
+
     <h1>Please Log In</h1>
         <form method="post">
         {% csrf_token %}
@@ -29,6 +31,7 @@
     <p>{{ error_message }}</p>
     {% endif %}
 </form>
+</div>
 </div>
 <script>
     function home(){

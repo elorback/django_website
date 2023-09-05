@@ -1,62 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home Page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet"   href="{% static 'css/style.css' %}">
-    </head>
-    <body>
-
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
 <div class="form-container">
-
     {% if user.is_authenticated %}
-    <h1>
-        Welcome {{user.username}}! 
-    </h1>
-    <div class='buttons'>
-        <div class='gen-container'>
-        <button onClick="user_page()">User Page</button>
-        <button onClick="user_settings()">User Settings</button>
+    <div>
+        <h1>Welcome {{user.username}}!</h1>
+        <div class='buttons'>
+            <button onClick="user_page()">User Page</button>
+            <button onClick="user_settings()">User Settings</button>
+            <button onClick="logout()">Log Out</button>
+        </div>
+        {% else %}
+        <h1>Welcome to the Home Page</h1>
+        <div class='buttons'>
+            <button onClick="login()">Log in</button>
+            <button onClick="registration()">Sign Up</button>
+            {% endif %}
+        </div>
     </div>
-    <button onClick="logout()">Log Out</button>
 </div>
-{% else %}
-<h1>
-    Welcome to the Home Page
-</h1>
-<div class='buttons'>
-<button onClick="login()"> Log in </button>
-<button onClick = "registration()">Sign Up</button>
-{% endif %}
-</div>
-<div>
-
-
-    
 <script>
-    function user_page(){
+    function user_page() {
         window.location.href = "{% url  'user_page' %}";
     }
-    function user_settings(){
+
+    function user_settings() {
         window.location.href = "{% url  'user_settings' %}";
     }
-function logout(){
-    window.location.href = "{% url 'user_logout' %}";
-}
- function login(){
-        window.location.href= "{% url 'login_method' %}";
-    } 
-    function registration(){
-        window.location.href= "{% url 'registration' %}";
+
+    function logout() {
+        window.location.href = "{% url 'user_logout' %}";
     }
 
-    
+    function login() {
+        window.location.href = "{% url 'login_method' %}";
+    }
+
+    function registration() {
+        window.location.href = "{% url 'registration' %}";
+    }
 </script>
-
-
+</body>
 </html>
