@@ -19,13 +19,15 @@
             <button onClick="user_settings()">User Settings</button>
             <button onClick="logout()">Log Out</button>
         </div>
+    </div>
         {% else %}
+        <div>
         <h1>Welcome to the Home Page</h1>
         <div class='buttons'>
             <button onClick="login()">Log in</button>
             <button onClick="registration()">Sign Up</button>
-            {% endif %}
         </div>
+        {% endif %}
     </div>
 </div>
 <script>
