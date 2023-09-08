@@ -11,9 +11,7 @@ class UserProfile(AbstractUser):
     class Meta:
         db_table = 'UserProfile'  # Set the desired table name
 
-  
 
-        
 
 class Items(models.Model):
     item_id = models.AutoField(primary_key=True,unique=True)
