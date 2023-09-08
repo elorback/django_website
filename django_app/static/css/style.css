@@ -3,13 +3,16 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container {
     max-width: 500px;
-    margin-right: 7px;
+    align-items: center;
+    display: grid;
+    margin: 0; 
     padding: 20px;
     background-color: lightsteelblue;
     border-radius: 5px;

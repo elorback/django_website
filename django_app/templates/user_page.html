@@ -21,16 +21,14 @@
     </div>
 </br>
 {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
-<form method="post" action="{% url 'add_item' %}">
+<form  method="post" action="{% url 'add_item' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <div class="buttons" style="margin-top: 7px">
-        <div>
+    <div class="buttons">
             <button type="submit">Add New Item</button>
             {% if request.resolver_match.url_name == 'add_item' %}
             <button type="reset">Clear</button>
             {% endif %}
-        </div>
     </div>
 </form>
 {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
@@ -71,12 +69,11 @@
 </ul>
 {% else %}
 <p>No items found for "{{ query }}"</p>
-{% endif %}
 
+{% endif %}
 {% endif %}
 </form>
 {% endif %}
-
 
 </div>
 </div>
