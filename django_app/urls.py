@@ -11,7 +11,5 @@ urlpatterns = [
     path('user_page/user_items/',views.user_items,name='user_items'),
     path('user_page/multiple_posts/',views.multiple_posts,name='multiple_posts'),
     path('user_settings/delete_profile/',views.delete_profile,name='delete_profile'),
-    path('user_settings/',views.user_settings,name='user_settings'),
-
-  
+    path('user_settings/',views.user_settings,name='user_settings'),  
 ]
