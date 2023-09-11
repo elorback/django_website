@@ -36,15 +36,16 @@ body {
 }
 
 .buttons {
-    justify-content: space-evenly;
+    justify-content: left;
     display: flex;
     margin-right: 7px;
+    
 
 }
 
 .buttons button {
     padding: 10px 20px;
-    justify-content: space-between;
+    justify-content: left;
     margin-right: 7px;
     border: none;
     border-radius: 5px;

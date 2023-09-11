@@ -24,7 +24,7 @@
 <form  method="post" action="{% url 'add_item' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <div class="buttons">
+    <div class="buttons" style="justify-content:left">
             <button type="submit">Add New Item</button>
             {% if request.resolver_match.url_name == 'add_item' %}
             <button type="reset">Clear</button>
