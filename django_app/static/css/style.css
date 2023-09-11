@@ -10,8 +10,8 @@ body {
 
 .form-container {
     max-width: 900px;
-    align-items: center;
     display: grid;
+    justify-items: center;
     padding: 20px;
     background-color: lightsteelblue;
     border-radius: 5px;

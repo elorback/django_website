@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class UserProfile(AbstractUser):
-    email = models.EmailField(max_length=254,unique=True)
+    email = models.EmailField(max_length=254,unique=True,blank=False) # Required
     date_created = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=30, blank=False)  # Required
     last_name = models.CharField(max_length=30, blank=False)   # Required

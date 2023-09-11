@@ -82,6 +82,15 @@ def user_settings(request):
     return render(request,'user_settings.html')
 
 @login_required
+def my_items(request):
+    user = UserProfile.objects.filter(username=request.user).first()
+    if user:
+        user_items = Items.objects.filter(user_profile=user)
+    else:
+        user_items = None
+    return render(request, 'user_page.html',{'user_items':user_items})
+
+@login_required
 def delete_profile(request):
     if request.method =="POST":
         action_type = request.POST.get('action')

@@ -20,8 +20,10 @@
             {% if request.resolver_match.url_name == "delete_profile" %}
             <form method="post" action="{% url "delete_profile" %}">
                 {% csrf_token %}
-                <p>Are you sure you want to delete?</p>
-                <button name='action' value ='confirm' type="submit">Delete</button>
+                <strong>Are you sure you want to delete?</strong>
+            </br>
+        </br>
+        <button name='action' value ='confirm' type="submit">Delete</button>
                 <button name='action'>Cancel</button>
             </form>
             {% else %}

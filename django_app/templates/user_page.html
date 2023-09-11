@@ -32,6 +32,26 @@
     </div>
 </form>
 {% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
+<form method="GET" action="{% url 'my_items' %}">
+    <div class='search-container' style="margin-top:7px">
+        <button type="submit"  class='search-button'>My Items</button>
+    </div>
+    {% if request.resolver_match.url_name == 'my_items' %}
+    <h2>My Items:  </h2>
+    {% if user_items %}
+    <ul>
+        {% for item in user_items %}
+        <li>Item: {{ item.title }} </br> {{item.date_posted}} </br>Description: {{ item.description }} </br> Price: ${{ item.price }}</li>
+    </br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>You have not added any items yet!</p>
+{% endif %}
+
+{% endif %}
+</form>
+{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}{% comment %}  {% endcomment %}
 <form method="GET" action="{% url 'multiple_posts' %}">
     <div class='search-container' style="margin-top:7px">
         <button type="submit" name='search_all' class='search-button'>Show Users With More That One Item</button>
