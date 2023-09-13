@@ -19,7 +19,9 @@
             </h1>
             {% csrf_token %}
             {{ form.as_p }}
-          <div class='buttons'>
+          <div class='buttons' style="
+          align-conten: center;
+          justify-content: space-evenly">
                 <button type="submit">Register</button>
                 <button type="reset" >Clear</button>
                 <button type="button" onClick="home()"> Home Page</button>
